@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@include('partials.popup')
+
 @section('content')
 
 <div class="container">
@@ -30,7 +32,13 @@
                 <td>
                     <a href="#" class="btn btn-primary">Show</a>
                     <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <form class="d-inline-block form-delete"
+                    action="{{ route('admin.books.destroy', $book->id) }}" method="POST"
+                    data-element-name="{{ $book->title }}">
+                    @csrf
+                    @method('DELETE')
+                    <button title="Delete" class="btn btn-danger">Delete</button>
+                </form>
                 </td>
             </tr>
             @endforeach
@@ -38,4 +46,8 @@
     </table>
 </div>
 
+@endsection
+
+@section('script')
+    @vite('resources/js/delete.js')
 @endsection
