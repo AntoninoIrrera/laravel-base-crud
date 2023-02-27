@@ -24,18 +24,18 @@
                 <div class="actions d-flex justify-content-between w-100">
                     <div class="main-actions">
                         <a href="{{ route('admin.books.index', $book->id) }}" class="btn btn-primary"><i
-                                class="fa-solid fa-arrow-left"></i>Back</a>
+                                class="fa-solid fa-arrow-left"></i>&nbsp;Back</a>
                     </div>
                     <div class="secondary-actions">
                         <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning"><i
-                                class="fa-solid fa-edit"></i>Edit</a>
+                                class="fa-solid fa-edit"></i>&nbsp;Edit</a>
                         <form class="d-inline-block form-delete double-confirm"
                             action="{{ route('admin.books.destroy', $book->id) }}" method="POST"
                             data-element-name="{{ $book->title }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" title="Delete" class="btn btn-danger"><i
-                                    class="fa-solid fa-trash"></i>Delete</button>
+                                    class="fa-solid fa-trash"></i>&nbsp;Delete</button>
                         </form>
                     </div>
                 </div>
