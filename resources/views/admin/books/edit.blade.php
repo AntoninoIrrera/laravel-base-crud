@@ -4,7 +4,7 @@
     <div class="container">
         @include('admin.partials.edit-create', [
             'method' => 'PUT',
-            'route' => 'admin.books.edit',
+            'route' => 'admin.books.update',
             'button' => 'Edit',
         ])
     </div>
