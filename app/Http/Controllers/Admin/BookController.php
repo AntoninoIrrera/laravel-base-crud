@@ -145,7 +145,7 @@ class BookController extends Controller
     public function forceDelete($id)
     {
         Book::where('id', $id)->withTrashed()->forceDelete();
-        return redirect()->route('admin.books.trashed')->with('message', "The book has been deleted definitely")->with('alert-type', 'warning');
+        return redirect()->route('admin.books.index')->with('message', "The book has been deleted definitely")->with('alert-type', 'warning');
     }
 
     public function restoreAll()
@@ -157,6 +157,6 @@ class BookController extends Controller
     public function restore($id)
     {
         Book::where('id', $id)->withTrashed()->restore();
-        return redirect()->route('admin.books.trashed')->with('message', "The book has been successfully restored")->with('alert-type', 'success');
+        return redirect()->route('admin.books.index')->with('message', "The book has been successfully restored")->with('alert-type', 'success');
     }
 }
