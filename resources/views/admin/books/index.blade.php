@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-12 mt-3 text-end">
-            <a href="#" class="btn btn-secondary">Create</a>
+            <a href="{{ route('admin.books.create') }}" class="btn btn-secondary">Create</a>
         </div>
     </div>
 
