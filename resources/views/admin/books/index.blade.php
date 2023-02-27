@@ -7,7 +7,12 @@
 
         <div class="row">
             <div class="col-12 mt-3 text-end">
-                <a href="{{ route('admin.books.create') }}" class="btn btn-success">Create</a>
+                @if ($trashed)
+                    <a class="btn btn-danger me-3" href="{{ route('admin.books.trashed') }}"><b>{{ $trashed }}</b>
+                        item/s in
+                        recycled bin</a>
+                @endif
+                <a href="{{ route('admin.books.create') }}" class="btn btn-secondary">Create</a>
             </div>
         </div>
 
