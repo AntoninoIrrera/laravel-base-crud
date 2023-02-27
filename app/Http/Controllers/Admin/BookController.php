@@ -50,7 +50,8 @@ class BookController extends Controller
 
         $books = Book::paginate(10);
 
-        return view('admin.books.index', compact('books'));
+        $trashed = Book::onlyTrashed()->get()->count();
+        return view('admin.books.index', compact('books', 'trashed'));
     }
 
     /**
