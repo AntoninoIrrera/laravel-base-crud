@@ -35,7 +35,8 @@ class BookController extends Controller
 
         $books = Book::all();
 
-        return view('admin.books.index', compact('books'));
+        $trashed = Book::onlyTrashed()->get()->count();
+        return view('admin.books.index', compact('books', 'trashed'));
     }
 
     /**
