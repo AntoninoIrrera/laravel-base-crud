@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-12 mt-3 text-end">
-                <a href="{{ route('admin.books.create') }}" class="btn btn-secondary">Create</a>
+                <a href="{{ route('admin.books.create') }}" class="btn btn-success">Create</a>
             </div>
         </div>
 
@@ -15,10 +15,10 @@
             <thead>
                 <tr>
                     <th scope="col">ISBN</th>
-                    <th scope="col">title</th>
-                    <th scope="col">author</th>
-                    <th scope="col">price</th>
-                    <th scope="col">operation</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                         <th scope="row">{{ $book['ISBN'] }}</th>
                         <td>{{ $book['title'] }}</td>
                         <td>{{ $book['author'] }}</td>
-                        <td>{{ $book['price'] }}</td>
+                        <td class="text-success fw-bold">{{ $book['price'] }}€</td>
                         <td>
                             <a href="{{ route('admin.books.show', $book->id) }}" class="btn btn-primary">Show</a>
                             <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
