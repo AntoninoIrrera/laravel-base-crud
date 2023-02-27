@@ -56,7 +56,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('admin.books.show', compact('book'));
     }
 
     /**
