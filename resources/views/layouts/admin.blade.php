@@ -46,11 +46,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
-                        @if(Auth::check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/admin/books') }}">{{ __('Index') }}</a>
                         </li>
-                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
