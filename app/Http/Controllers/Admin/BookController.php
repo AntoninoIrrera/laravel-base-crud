@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    public $validation = [
+        "title" => "required|string|min:2|max:100",
+        "author" => "nullable|string|max:100",
+        "publication_date" => "nullable|date",
+        "description" => "nullable|string",
+        "genre" => "required|string|max:100",
+        "cover_image" => "nullable|url",
+        "ISBN" => "required|unique|string|max:13",
+        "price" => "required|numeric",
+        "editor" => "required|string|max:100"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,7 @@ class BookController extends Controller
 
         $books = Book::all();
 
-        return view('admin.books.index',compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**
@@ -56,7 +69,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('admin.books.show', compact('book'));
     }
 
     /**
@@ -101,5 +115,23 @@ class BookController extends Controller
     {
         $books = Book::onlyTrashed()->get();
         return view('admin.books.trashed', compact('books'));
+    }
+
+    public function forceDelete($id)
+    {
+        Book::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.books.trashed')->with('message', "The book has been deleted definitely")->with('alert-type', 'warning');
+    }
+
+    public function restoreAll()
+    {
+        Book::onlyTrashed()->restore();
+        return redirect()->route('admin.books.index')->with('message', "All books have been successfully restored")->with('alert-type', 'success');
+    }
+
+    public function restore($id)
+    {
+        Book::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.books.trashed')->with('message', "The book has been successfully restored")->with('alert-type', 'success');
     }
 }
