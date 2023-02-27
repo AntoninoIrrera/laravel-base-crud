@@ -25,6 +25,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/trashed', [BookController::class, 'trashed'])->name('books.trashed');
+    Route::post('/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
+    Route::delete('/{book}/force-delete', [BookController::class, 'forceDelete'])->name('books.force-delete');
+    Route::post('/restore-all', [BookController::class, 'restoreAll'])->name('books.restore-all');
     Route::resource('/books', BookController::class);
 });
 

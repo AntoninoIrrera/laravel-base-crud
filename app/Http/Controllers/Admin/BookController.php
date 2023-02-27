@@ -116,4 +116,22 @@ class BookController extends Controller
         $books = Book::onlyTrashed()->get();
         return view('admin.books.trashed', compact('books'));
     }
+
+    public function forceDelete($id)
+    {
+        Book::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.books.trashed')->with('message', "The book has been deleted definitely")->with('alert-type', 'warning');
+    }
+
+    public function restoreAll()
+    {
+        Book::onlyTrashed()->restore();
+        return redirect()->route('admin.books.index')->with('message', "All books have been successfully restored")->with('alert-type', 'success');
+    }
+
+    public function restore($id)
+    {
+        Book::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.books.trashed')->with('message', "The book has been successfully restored")->with('alert-type', 'success');
+    }
 }
