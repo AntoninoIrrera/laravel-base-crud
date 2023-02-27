@@ -13,7 +13,7 @@
                             item/s in
                             recycled bin</a>
                     @endif
-                    <a href="{{ route('admin.books.create') }}" class="btn btn-secondary">Create</a>
+                    <a href="{{ route('admin.books.create') }}" class="btn btn-secondary"><i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>
 
