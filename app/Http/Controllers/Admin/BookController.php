@@ -96,7 +96,7 @@ class BookController extends Controller
         $data = $request->all();
         $book->update($data);
 
-        return redirect()->route('admin.products.index', compact('book'))->with('message', 'Elemento modificato con successo')->with('alert-type', 'success');
+        return redirect()->route('admin.books.index', compact('book'))->with('message', 'Elemento modificato con successo')->with('alert-type', 'success');
     }
 
     /**
