@@ -45,7 +45,7 @@ class BookController extends Controller
         $newBook->save();
 
 
-        return redirect()->route('admin.books.show', $newBook->id);
+        return redirect()->route('admin.books.show', $newBook->id)->with('message', "$newBook->title has been created")->with('alert-type', 'info');
     }
 
     /**
