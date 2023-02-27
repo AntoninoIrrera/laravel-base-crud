@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    public $validation = [
+        "title" => "required|string|min:2|max:100",
+        "author" => "nullable|string|max:100",
+        "publication_date" => "nullable|date",
+        "description" => "nullable|string",
+        "genre" => "required|string|max:100",
+        "cover_image" => "nullable|url",
+        "ISBN" => "required|unique|string|max:13",
+        "price" => "required|numeric",
+        "editor" => "required|string|max:100"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,7 @@ class BookController extends Controller
 
         $books = Book::all();
 
-        return view('admin.books.index',compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**
