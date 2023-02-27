@@ -9,17 +9,21 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
 
-    public $validation = [
-        "title" => "required|string|min:2|max:100",
-        "author" => "nullable|string|max:100",
-        "publication_date" => "nullable|date",
-        "description" => "nullable|string",
-        "genre" => "required|string|max:100",
-        "cover_image" => "nullable|url",
-        "ISBN" => "required|unique|string|max:13",
-        "price" => "required|numeric",
-        "editor" => "required|string|max:100"
-    ];
+    public function getValidated($request) {
+        
+        return $request->validate([
+            "title" => "required|string|min:2|max:100",
+            "author" => "nullable|string|max:100",
+            "publication_date" => "nullable|date",
+            "description" => "nullable|string",
+            "genre" => "required|string|max:100",
+            "cover_image" => "nullable|url",
+            "ISBN" => "required|unique|string|max:13",
+            "price" => "required|numeric",
+            "editor" => "required|string|max:100",
+        ]);
+    }
+    
 
     /**
      * Display a listing of the resource.
@@ -52,6 +56,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $this->getValidated($request);
+        
         $data = $request->all();
         $newBook = new Book();
         $newBook->fill($data);
@@ -93,6 +99,8 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $this->getValidated($request);
+        
         $data = $request->all();
         $book->update($data);
 
