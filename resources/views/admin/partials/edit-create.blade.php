@@ -29,7 +29,7 @@
 
     <div class="mb-3">
         <label for="cover_image" class="form-label">Book image:</label>
-        <input type="file" class="form-control" id="cover_image" name="cover_image"
+        <input type="url" class="form-control" id="cover_image" name="cover_image"
             value="{{ old('cover_image', $book->cover_image) }}">
     </div>
 
