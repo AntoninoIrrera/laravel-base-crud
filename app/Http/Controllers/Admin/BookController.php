@@ -39,9 +39,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Book $book)
     {
-        return view('admin.books.create');
+        return view('admin.books.create', compact('book'));
     }
 
     /**

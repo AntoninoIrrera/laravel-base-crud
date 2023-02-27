@@ -29,7 +29,7 @@
                         <td>{{ $book['author'] }}</td>
                         <td>{{ $book['price'] }}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Show</a>
+                            <a href="{{ route('admin.books.show', $book->id) }}" class="btn btn-primary">Show</a>
                             <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
                             <form class="d-inline-block form-delete" action="{{ route('admin.books.destroy', $book->id) }}"
                                 method="POST" data-element-name="{{ $book->title }}">
