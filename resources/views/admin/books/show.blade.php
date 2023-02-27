@@ -25,7 +25,7 @@
                     <div class="main-actions">
                         <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-primary">Edit</a>
                         <form class="d-inline-block form-delete double-confirm"
-                            action="{{ route('admin.books.force-delete', $book->id) }}" method="POST"
+                            action="{{ route('admin.books.destroy', $book->id) }}" method="POST"
                             data-element-name="{{ $book->title }}">
                             @csrf
                             @method('DELETE')
