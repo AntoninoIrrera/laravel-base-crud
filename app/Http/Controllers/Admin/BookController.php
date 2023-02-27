@@ -15,7 +15,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+
+        $books = Book::all();
+
+        return view('admin.books.index',compact('books'));
     }
 
     /**
@@ -40,6 +43,9 @@ class BookController extends Controller
         $newBook = new Book();
         $newBook->fill($data);
         $newBook->save();
+
+
+        return redirect()->route('admin.books.show', $newBook->id)->with('message', "$newBook->title has been created")->with('alert-type', 'info');
     }
 
     /**
@@ -56,24 +62,27 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+        return view('admin.books.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $data = $request->all();
+        $book->update($data);
+
+        return redirect()->route('admin.products.index', compact('book'))->with('message', 'Elemento modificato con successo')->with('alert-type', 'success');
     }
 
     /**
@@ -82,8 +91,15 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('admin.books.index')->with('message', "The book $book->title has been moved to the bin")->with('alert-type', 'warning');
+    }
+
+    public function trashed()
+    {
+        $books = Book::onlyTrashed()->get();
+        return view('admin.books.trashed', compact('books'));
     }
 }
