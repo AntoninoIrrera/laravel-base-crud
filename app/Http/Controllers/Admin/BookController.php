@@ -18,7 +18,7 @@ class BookController extends Controller
         "description" => "nullable|string",
         "genre" => "required|string|max:100",
         "cover_image" => "nullable|url",
-        "ISBN" => "required|unique|string|max:13",
+        "ISBN" => "required|unique:books|string|max:13",
         "price" => "required|numeric",
         "editor" => "required|string|max:100",
     ];
