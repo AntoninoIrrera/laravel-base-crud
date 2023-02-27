@@ -2,6 +2,19 @@
     @csrf
     @method($method)
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <div class="mb-3">
         <label for="title" class="form-label">Book title:</label>
         <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $book->title) }}">
@@ -12,11 +25,11 @@
         <input type="text" class="form-control" id="author" name="author"
             value="{{ old('author', $book->author) }}">
     </div>
-    {{-- <div class="mb-3">
+    <div class="mb-3">
         <label for="publication_date" class="form-label">Book date:</label>
         <input type="date" class="form-control" id="publication_date" name="publication_date"
             value="{{ old('publication_date', $book->publication_date) }}">
-    </div> --}}
+    </div>
     <div class="mb-3">
         <label for="description" class="form-label">Book description:</label>
         <textarea class="form-control" id="description" rows="15" name="description">{{ old('description', $book->description) }}</textarea>
