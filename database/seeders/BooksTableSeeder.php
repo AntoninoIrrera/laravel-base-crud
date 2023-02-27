@@ -20,7 +20,7 @@ class BooksTableSeeder extends Seeder
             $new_book = new Book();
             $new_book->title = $faker->realText(20);
             $new_book->author = $faker->name();
-            $new_book->publication_date = $faker->year();
+            $new_book->publication_date = $faker->date();
             $new_book->description = $faker->paragraph();
             $new_book->genre = $faker->word();
             $new_book->cover_image = $faker->imageUrl();
