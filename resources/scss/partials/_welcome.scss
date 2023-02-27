@@ -4,9 +4,15 @@
         max-width: 960px;
     }
 
+    .myBg {
+        background-image: url(https://static01.nyt.com/images/2015/10/24/opinion/24manguel/24manguel-superJumbo.jpg?quality=75&auto=webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+    }
 
 
-    /* Dummy devices (replace them with your own or something else entirely !) */
     .product-device {
         position: absolute;
         right: 10%;
