@@ -15,7 +15,7 @@
                 <p class="card-text text-center">{{ $book->description }}</p>
                 <p class="card-text text-center">
                     <small class="text-muted">Author: {{ $book->author }}</small><br>
-                    <small class="text-muted">Pubblication date: {{ $book->pubblication_date }}</small><br>
+                    <small class="text-muted">Publication date: {{ $book->publication_date }}</small><br>
                     <small class="text-muted">Genre: {{ $book->genre }}</small><br>
                     <small class="text-muted">Editor: {{ $book->editor }}</small><br>
                     <small class="text-muted">ISBN: {{ $book->ISBN }}</small><br>
