@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@include('partials.popup')
+
 @section('content')
     <div class="container">
         <div class="card mb-3 mt-5">
@@ -23,14 +25,20 @@
                 <div class="actions d-flex justify-content-between w-100">
                     <div class="main-actions">
                         <a href="" class="btn btn-primary">Edit</a>
-                        <form action="" method="POST" class="d-inline-block">
+                        <form class="d-inline-block form-delete double-confirm"
+                            action="{{ route('admin.books.force-delete', $book->id) }}" method="POST"
+                            data-element-name="{{ $book->title }}">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-md btn-danger">Delete</button>
+                            <button type="submit" title="Delete" class="btn btn-sm btn-danger">Delete</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    @vite('resources/js/delete.js')
 @endsection
