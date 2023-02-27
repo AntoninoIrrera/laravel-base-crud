@@ -37,7 +37,7 @@
                                 method="POST" data-element-name="{{ $book->title }}">
                                 @csrf
                                 @method('DELETE')
-                                <button title="Delete" class="btn btn-danger"><i class="fa-solid fa-edit"></i></button>
+                                <button title="Delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
