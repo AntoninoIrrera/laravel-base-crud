@@ -40,7 +40,7 @@
 
     <div class="mb-3">
         <label for="price" class="form-label">Book Price:</label>
-        <input type="number" class="form-control" id="price" name="price"
+        <input type="float" class="form-control" id="price" name="price"
             value="{{ old('price', $book->price) }}">
     </div>
 
