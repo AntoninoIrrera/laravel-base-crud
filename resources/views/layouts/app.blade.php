@@ -17,6 +17,8 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -51,6 +53,9 @@
                             <a class="nav-link" href="{{url('/admin/books') }}">{{ __('Index') }}</a>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.books.trashed')}}">{{ __('Bin') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -94,6 +99,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 
 </html>

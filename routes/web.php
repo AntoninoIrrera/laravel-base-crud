@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/trashed', [BookController::class, 'trashed'])->name('books.trashed');
     Route::resource('/books', BookController::class);
 });
 
