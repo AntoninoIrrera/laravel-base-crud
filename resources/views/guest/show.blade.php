@@ -23,16 +23,8 @@
                 </p>
                 <div class="actions d-flex w-100">
                     <div class="main-actions">
-                        <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-primary"><i
-                                class="fa-solid fa-edit"></i></a>
-                        <form class="d-inline-block form-delete double-confirm"
-                            action="{{ route('admin.books.force-delete', $book->id) }}" method="POST"
-                            data-element-name="{{ $book->title }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" title="Delete" class="btn btn-danger"><i
-                                    class="fa-solid fa-trash"></i></button>
-                        </form>
+                        <a href="{{ route('guest.index') }}" class="btn btn-success"><i
+                                class="fa-solid fa-arrow-left"></i></a>
                     </div>
                 </div>
             </div>
