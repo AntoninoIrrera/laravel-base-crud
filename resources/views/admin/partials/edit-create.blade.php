@@ -44,6 +44,7 @@
             value="{{ old('price', $book->price) }}">
     </div>
 
+
     <div class="mb-3">
         <label for="editor" class="form-label">Editor:</label>
         <input type="text" class="form-control" id="editor" name="editor"
