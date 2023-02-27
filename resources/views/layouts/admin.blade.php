@@ -51,9 +51,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/admin/books') }}">{{ __('Index') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.books.trashed')}}">{{ __('Bin') }}</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
