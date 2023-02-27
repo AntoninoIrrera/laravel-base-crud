@@ -18,6 +18,11 @@
         </div>
         @endforeach
     </div>
+    <div class="row">
+        <div class="col-12">
+            {{$books->links()}}
+        </div>
+    </div>
 </div>
 
 
