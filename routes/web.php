@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
@@ -46,6 +47,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('/books', BookController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/genres', GenreController::class);
+    Route::resource('/authors', AuthorController::class);
 });
 
 Route::middleware('auth')->group(function () {
