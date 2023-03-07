@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,6 @@ class BookController extends Controller
         "author" => "nullable|string|max:100",
         "publication_date" => "nullable|date",
         "description" => "nullable|string",
-        "genre" => "required|string|max:100",
         "cover_image" => "nullable|url",
         "ISBN" => "required|unique:books|string|max:13",
         "price" => "required|numeric",
@@ -61,7 +61,7 @@ class BookController extends Controller
      */
     public function create(Book $book)
     {
-        return view('admin.books.create', compact('book'));
+        return view('admin.books.create', ['book'=> $book, 'genres'=>Genre::all()]);
     }
 
     /**
@@ -75,6 +75,7 @@ class BookController extends Controller
         $data = $request->validate($this->validator, $this->errorMsg);
         $newBook = new Book();
         $newBook->fill($data);
+        $newBook->genres()->sync($data['genres'] ?? []);
         $newBook->save();
 
 
@@ -101,7 +102,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.books.edit', compact('book'));
+        return view('admin.books.edit', ['book'=> $book, 'genres'=>Genre::all()]);
     }
 
     /**
@@ -119,6 +120,7 @@ class BookController extends Controller
 
         $editData = $request->validate($rules, $this->errorMsg);
 
+        $book->genres()->sync($editData['genres'] ?? []);
         $book->update($editData);
 
         return redirect()->route('admin.books.index', compact('book'))->with('message', 'Elemento modificato con successo')->with('alert-type', 'success');

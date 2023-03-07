@@ -49,7 +49,20 @@
             </div>
         @enderror
     </div>
+
     <div class="mb-3">
+        <label for="project_technologies" class="form-label d-block">Technologies: </label>
+
+        @foreach ($genres as $genre)
+            <input type="checkbox" class="form-check-input" id="book_genres" name="genres[]"
+                value="{{ $genre->id }}"
+                @if ($errors->any()) @checked(in_array($genre->id, old('genres',[])))
+            @else
+                @checked($book->genres->contains($genre->id)) @endif>
+            <label class="form-check-label" for="book_genres">{{ $genre->name }}</label>
+        @endforeach
+    </div>
+    {{-- <div class="mb-3">
         <label for="genre" class="form-label">Book genre:</label>
         <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre"
             value="{{ old('genre', $book->genre) }}">
@@ -58,7 +71,7 @@
                 {{ $message }}
             </div>
         @enderror
-    </div>
+    </div> --}}
 
     <div class="mb-3">
         <label for="cover_image" class="form-label">Book image:</label>
