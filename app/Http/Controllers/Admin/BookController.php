@@ -77,8 +77,8 @@ class BookController extends Controller
         $data = $request->validate($this->validator, $this->errorMsg);
         $newBook = new Book();
         $newBook->fill($data);
-        $newBook->genres()->sync($data['genres'] ?? []);
         $newBook->save();
+        $newBook->genres()->sync($data['genres'] ?? []);
 
 
         return redirect()->route('admin.books.show', $newBook->id)->with('message', "$newBook->title has been created")->with('alert-type', 'info');
@@ -122,8 +122,8 @@ class BookController extends Controller
 
         $editData = $request->validate($rules, $this->errorMsg);
 
-        $book->genres()->sync($editData['genres'] ?? []);
         $book->update($editData);
+        $book->genres()->sync($editData['genres'] ?? []);
 
         return redirect()->route('admin.books.index', compact('book'))->with('message', 'Elemento modificato con successo')->with('alert-type', 'success');
     }
