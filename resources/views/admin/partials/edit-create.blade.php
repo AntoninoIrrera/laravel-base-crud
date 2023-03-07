@@ -20,15 +20,24 @@
     </div>
 
     <div class="mb-3">
-        <label for="author" class="form-label">Book author:</label>
-        <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author"
-            value="{{ old('author', $book->author) }}">
-        @error('author')
+        <label for="book_type" class="form-label">Book author:</label>
+        <select class="form-control @error('author->id') is-invalid @enderror" id="book_author" name="author_id">
+            <option value="">-- Select author --</option>
+            @foreach ($authors as $author)
+                <option value="{{ $author->id }}"
+                    {{ old('author_id', $book->author_id) == $author->id ? 'selected' : '' }}>
+                    {{ $author->first_name }} {{ $author->last_name }}
+                </option>
+            @endforeach
+        </select>
+        @error('author_id')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
     </div>
+
+
     <div class="mb-3">
         <label for="publication_date" class="form-label">Book date:</label>
         <input type="date" class="form-control @error('publication_date') is-invalid @enderror" id="publication_date"
