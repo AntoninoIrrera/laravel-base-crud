@@ -17,7 +17,16 @@
                     <li class="text-muted">ISBN: {{ $book->ISBN }}</li>
                     <li class="text-muted">Author: {{ $book->author }}</li>
                     <li class="text-muted">Editor: {{ $book->editor }}</li>
-                    <li class="text-muted">Genre: {{ $book->genre }}</li>
+                    <li class="text-muted">
+                        <p>
+                            Genre: 
+                            @foreach ($book->genres as $genre)
+                                <span class="badge rounded-pill" style="background-color: {{ $genre->color }}">
+                                    {{ $genre->name }}
+                                </span>
+                            @endforeach
+                        </p>
+                    </li>
                     <li class="text-muted">Publication date: {{ $book->publication_date }}</li>
                     <li class="text-muted">Price: {{ $book->price }}</li>
                 </ul>

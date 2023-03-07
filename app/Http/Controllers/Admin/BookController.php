@@ -21,6 +21,7 @@ class BookController extends Controller
         "ISBN" => "required|unique:books|string|max:13",
         "price" => "required|numeric",
         "editor" => "required|string|max:100",
+        "genres"=> "array|exists:genres,id"
     ];
 
     public $errorMsg = [
