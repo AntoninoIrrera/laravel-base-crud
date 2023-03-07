@@ -20,7 +20,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        $book = Book::findOrFail($book->id)->paginate(10);
+        $book = Book::findOrFail($book->id);
 
         return response()->json([
             'success' => true,
