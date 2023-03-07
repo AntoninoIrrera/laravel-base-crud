@@ -12,4 +12,8 @@ class Book extends Model
     use SoftDeletes;
 
     protected $fillable = ['title', 'author', 'publication_date', 'description', 'genre', 'cover_image', 'ISBN', 'price', 'editor'];
+
+    public function genres(){
+        return $this->belongsToMany(Genre::class);
+    }
 }
