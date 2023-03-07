@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Validation\Rule;
@@ -21,6 +22,7 @@ class BookController extends Controller
         "ISBN" => "required|unique:books|string|max:13",
         "price" => "required|numeric",
         "editor" => "required|string|max:100",
+        "genres"=> "array|exists:genres,id"
     ];
 
     public $errorMsg = [

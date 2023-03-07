@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,9 @@ class BooksTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 50; $i++) { 
+        for ($i = 0; $i < 50; $i++) {
             $new_book = new Book();
+            $new_book->author_id = Author::inRandomOrder()->first()->id;
             $new_book->title = $faker->realText(20);
             $new_book->author = $faker->name();
             $new_book->publication_date = $faker->date();

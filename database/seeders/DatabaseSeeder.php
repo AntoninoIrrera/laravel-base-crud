@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 RoleTableSeeder::class,
                 UserSeeder::class,
                 UserDetailSeeder::class,
+                AuthorSeeder::class,
                 BooksTableSeeder::class,
                 BookGenreSeeder::class,
             ]
