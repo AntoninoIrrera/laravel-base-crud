@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
