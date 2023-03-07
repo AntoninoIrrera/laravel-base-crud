@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 use App\Http\Controllers\ProfileController;
 use Faker\Guesser\Name;
@@ -22,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/books',[GuestPageController::class, 'index'])->name('guest.index');
+Route::get('/books', [GuestPageController::class, 'index'])->name('guest.index');
 Route::get('/books/{book}', [GuestPageController::class, 'show'])->name('guest.show');
 
 
@@ -37,6 +38,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::post('/restore-all', [BookController::class, 'restoreAll'])->name('books.restore-all');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/books', BookController::class);
+    Route::resource('/roles', RoleController::class);
 });
 
 Route::middleware('auth')->group(function () {
