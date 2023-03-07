@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 use App\Http\Controllers\ProfileController;
 use Faker\Guesser\Name;
@@ -39,6 +40,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/books', BookController::class);
     Route::resource('/roles', RoleController::class);
+    Route::resource('/genres', GenreController::class);
 });
 
 Route::middleware('auth')->group(function () {
