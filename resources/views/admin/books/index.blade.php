@@ -23,6 +23,7 @@
                         <th scope="col">ISBN</th>
                         <th scope="col">Title</th>
                         <th scope="col">Author</th>
+                        <th scope="col">Genre</th>
                         <th scope="col">Price</th>
                         <th scope="col">Operation</th>
                     </tr>
@@ -32,7 +33,16 @@
                         <tr>
                             <th scope="row">{{ $book['ISBN'] }}</th>
                             <td>{{ $book['title'] }}</td>
-                            <td>{{ $book['author'] }}</td>
+                            <td>{{ $book->author->first_name }} {{ $book->author->last_name }}</td>
+                            <td>
+                                @forelse ($book->genres as $genre)
+                                    <span class="me-1">
+                                        {{ $genre->name }}
+                                    </span>
+                                @empty
+                                    No genres
+                                @endforelse
+                            </td>
                             <td class="text-success fw-bold">{{ $book['price'] }}€</td>
                             <td>
                                 <a href="{{ route('admin.books.show', $book->id) }}" class="btn btn-primary"><i
