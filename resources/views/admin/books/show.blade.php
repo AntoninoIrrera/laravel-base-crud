@@ -15,11 +15,11 @@
                 <p class="card-text text-center font-weight-bold">{{ $book->description }}</p>
                 <ul class="list-unstyled text-center mb-4">
                     <li class="text-muted">ISBN: {{ $book->ISBN }}</li>
-                    <li class="text-muted">Author: {{ $book->author }}</li>
+                    <li class="text-muted">Author: {{ $book->author->first_name }} {{ $book->author->last_name }}</li>
                     <li class="text-muted">Editor: {{ $book->editor }}</li>
                     <li class="text-muted">
                         <p>
-                            Genre: 
+                            Genre:
                             @foreach ($book->genres as $genre)
                                 <span class="badge rounded-pill" style="background-color: {{ $genre->color }}">
                                     {{ $genre->name }}
