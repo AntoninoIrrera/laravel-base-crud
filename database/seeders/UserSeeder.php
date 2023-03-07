@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
     {
         $admin = new User();
         $admin->name = 'Admin';
+        $admin->email = 'admin@boolpress.com';
         $admin->password = Hash::make('12345678');
+        $admin->save();
         //
         for ($i = 0; $i < 20; $i++) {
             $newUser = new User();
