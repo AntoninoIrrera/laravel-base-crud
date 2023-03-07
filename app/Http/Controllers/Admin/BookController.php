@@ -15,21 +15,21 @@ class BookController extends Controller
 
     public $validator = [
         "title" => "required|string|min:2|max:100",
-        "author" => "nullable|string|max:100",
+        'author_id' => 'required|exists:authors,id',
         "publication_date" => "nullable|date",
         "description" => "nullable|string",
         "cover_image" => "nullable|url",
         "ISBN" => "required|unique:books|string|max:13",
         "price" => "required|numeric",
         "editor" => "required|string|max:100",
-        "genres"=> "array|exists:genres,id"
+        "genres" => "array|exists:genres,id"
     ];
 
     public $errorMsg = [
         'title.required' => 'Il titolo è obbligatorio.',
         'title.min' => 'Il titolo deve essere di almeno due caratteri.',
         'title.max' => 'Il titolo non deve essere più di 100 caratteri.',
-        'author.max' => "L'autore non deve avere più di 100 caratteri.",
+        'author.required' => "Seleziona un autore",
         'publication_date' => 'La data di uscita deve essere valida.',
         'price.required' => 'Il prezzo è obbligatorio.',
         "cover_image.required" => 'La copertina è richiesta.',
@@ -63,7 +63,7 @@ class BookController extends Controller
      */
     public function create(Book $book)
     {
-        return view('admin.books.create', ['book'=> $book, 'genres'=>Genre::all()]);
+        return view('admin.books.create', ['book' => $book, 'genres' => Genre::all(), 'authors' => Author::all()]);
     }
 
     /**
@@ -104,7 +104,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.books.edit', ['book'=> $book, 'genres'=>Genre::all()]);
+        return view('admin.books.edit', ['book' => $book, 'genres' => Genre::all(), 'authors' => Author::all()]);
     }
 
     /**
