@@ -33,7 +33,7 @@
                         <tr>
                             <th scope="row">{{ $book['ISBN'] }}</th>
                             <td>{{ $book['title'] }}</td>
-                            <td>{{ $book['author'] }}</td>
+                            <td>{{ $book->author->first_name }} {{ $book->author->last_name }}</td>
                             <td>
                                 @forelse ($book->genres as $genre)
                                     <span class="me-1">
