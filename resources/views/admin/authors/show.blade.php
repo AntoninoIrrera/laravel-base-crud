@@ -15,10 +15,10 @@
 
                 <div class="secondary-actions mb-2">
                     {{-- Edit --}}
-                    <a href="{{ route('admin.genres.edit', $author->id) }}" class="btn btn-warning"><i
+                    <a href="{{ route('admin.authors.edit', $author->id) }}" class="btn btn-warning"><i
                             class="fa-solid fa-edit"></i></a>
                     {{-- Delete --}}
-                    <form class="d-inline-block form-delete" action="{{ route('admin.genres.destroy', $author->id) }}"
+                    <form class="d-inline-block form-delete" action="{{ route('admin.authors.destroy', $author->id) }}"
                         method="POST" data-element-name="{{ $author->name }}">
                         @csrf
                         @method('DELETE')

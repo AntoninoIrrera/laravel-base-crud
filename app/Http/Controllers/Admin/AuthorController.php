@@ -98,7 +98,7 @@ class AuthorController extends Controller
         $data = $request->validate($this->validationRules, $this->customValidations);
         $author->update($data);
 
-        return redirect()->route('admin.author.show', compact('author'))->with('message', "$author->first_name $author->last_name has been update")->with('alert-type', 'info');
+        return redirect()->route('admin.authors.show', compact('author'))->with('message', "$author->first_name $author->last_name has been update")->with('alert-type', 'info');
     }
 
     /**
