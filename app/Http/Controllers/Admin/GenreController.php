@@ -32,7 +32,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('admin.genres.create', ["role" => new Genre()]);
+        return view('admin.genres.create', ["genre" => new Genre()]);
     }
 
     /**
@@ -87,7 +87,7 @@ class GenreController extends Controller
 
         $genre->update($editData);
 
-        return redirect()->route('admin.genres.show', compact('role'))->with('message', "$genre->name has been update")->with('alert-type', 'info');
+        return redirect()->route('admin.genres.show', compact('genre'))->with('message', "$genre->name has been update")->with('alert-type', 'info');
     }
 
     /**
