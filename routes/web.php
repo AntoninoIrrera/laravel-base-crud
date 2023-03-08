@@ -46,8 +46,16 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/books', BookController::class);
     Route::resource('/roles', RoleController::class);
-    Route::resource('/genres', GenreController::class);
+    // Route::resource('/genres', GenreController::class);
     Route::resource('/authors', AuthorController::class);
+});
+
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/trashed', [GenreController::class, 'trashed'])->name('genres.trashed');
+    Route::post('/{genre}/restore', [GenreController::class, 'restore'])->name('genres.restore');
+    Route::delete('/{genre}/force-delete', [GenreController::class, 'forceDelete'])->name('genres.force-delete');
+    Route::post('/restore-all', [GenreController::class, 'restoreAll'])->name('genres.restore-all');
+    Route::resource('/genres', GenreController::class);
 });
 
 Route::middleware('auth')->group(function () {
