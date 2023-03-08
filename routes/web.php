@@ -31,6 +31,12 @@ Route::get('/books/{book}', [GuestPageController::class, 'show'])->name('guest.s
 
 Route::get('/contact-us', [LeadController::class, 'create'])->name('guest.contact-us.create');
 Route::post('/contact-us', [LeadController::class, 'store'])->name('guest.contact-us.store');
+Route::delete('/lead/{lead}', [LeadController::class, 'destroy'])->name('email.destroy');
+Route::get('/lead/trashed', [LeadController::class, 'trashed'])->name('email.trashed');
+Route::post('/lead/{lead}/restore', [LeadController::class, 'restore'])->name('email.restore');
+Route::delete('/lead/{lead}/force-delete', [LeadController::class, 'forceDelete'])->name('email.force-delete');
+Route::post('/lead/restore-all', [LeadController::class, 'restoreAll'])->name('email.restore-all');
+
 
 
 
