@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BookController as ApiBookController;
+use App\Http\Controllers\api\LeadController as ApiLeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::get('/books/{book}', [ApiBookController::class, 'show'])->name('api.book.
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/contact-us', [ApiLeadController::class, 'store']);
