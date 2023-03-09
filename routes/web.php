@@ -46,6 +46,11 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('/books', BookController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/genres', GenreController::class);
+
+    Route::get('/trash', [RoleController::class, 'trash'])->name('roles.trash');
+    Route::post('/trash/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
+    Route::post('/trash/restore-all', [RoleController::class, 'restoreAll'])->name('roles.restore-all');
+    Route::delete('/trash/{role}/force-delete', [RoleController::class, 'forceDelete'])->name('roles.force-delete');
 });
 
 Route::middleware('auth')->group(function () {

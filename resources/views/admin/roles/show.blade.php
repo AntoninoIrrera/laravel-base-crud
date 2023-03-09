@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('admin.roles.index') }}" class="btn btn-dark mt-4">Go Back</a>
         <div class="card mb-3 mt-5 shadow-lg">
             <div class="card text-center">
                 <div class="text my-4">

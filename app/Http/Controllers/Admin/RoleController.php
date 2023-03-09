@@ -22,7 +22,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        $trash = Role::onlyTrashed()->count();
+        return view('admin.roles.index', compact('roles', 'trash'));
     }
 
     /**
@@ -100,5 +101,30 @@ class RoleController extends Controller
     {
         $role->delete();
         return redirect()->route('admin.roles.index')->with('message', "$role->name has been delete")->with('alert-type', 'warning');
+    }
+
+
+    public function trash()
+    {
+        $roles = Role::onlyTrashed()->get();
+        return view('admin.roles.trashed', compact('roles'));
+    }
+
+    public function restore($id)
+    {
+        Role::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.roles.index')->with('message', "Role has been restored")->with('alert-type', 'success');
+    }
+
+    public function restoreAll()
+    {
+        Role::withTrashed()->restore();
+        return redirect()->route('admin.roles.index')->with('message', "Role has been restored")->with('alert-type', 'success');
+    }
+
+    public function forceDelete($id)
+    {
+        Role::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.roles.index')->with('message', 'Project has been permanently deleted')->with('type', 'warning');
     }
 }

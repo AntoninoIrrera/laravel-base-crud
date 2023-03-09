@@ -8,11 +8,13 @@
 
             <div class="row">
                 <div class="col-12 mt-3 text-end">
-                    {{-- @if ($trashed)
-                        <a class="btn btn-danger me-3" href="{{ route('admin.roles.trashed') }}"><b>{{ $trashed }}</b>
+                    @if ($trash)
+                        <a class="btn btn-danger me-3" href="{{ route('admin.roles.trash') }}"><b>
+                                {{ $trash }}
+                            </b>
                             item/s in
                             recycled bin</a>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
 
@@ -22,9 +24,9 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Color</th>
-                        <th scope="col">
+                        <th scope="col" class="text-end">
                             <a href="{{ route('admin.roles.create') }}" class="btn btn-secondary"><i
-                                    class="fa-solid fa-plus"></i></a>
+                                    class="fa-solid fa-plus"></i> Create Role</a>
                         </th>
                     </tr>
                 </thead>
