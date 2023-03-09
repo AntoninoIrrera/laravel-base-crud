@@ -48,16 +48,21 @@ Route::get('/dashboard', function () {
     return view('dashboard',compact('totalLeads','trashed','leads'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth','checkRole'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/trashed', [BookController::class, 'trashed'])->name('books.trashed');
-    Route::post('/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
-    Route::delete('/{book}/force-delete', [BookController::class, 'forceDelete'])->name('books.force-delete');
-    Route::post('/restore-all', [BookController::class, 'restoreAll'])->name('books.restore-all');
+
+
+Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/books', BookController::class);
-    Route::resource('/roles', RoleController::class);
-    // Route::resource('/genres', GenreController::class);
-    Route::resource('/authors', AuthorController::class);
+    Route::middleware(['checkRole'])->group(function(){
+
+        Route::get('/trashed', [BookController::class, 'trashed'])->name('books.trashed');
+        Route::post('/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
+        Route::delete('/{book}/force-delete', [BookController::class, 'forceDelete'])->name('books.force-delete');
+        Route::post('/restore-all', [BookController::class, 'restoreAll'])->name('books.restore-all');
+        Route::resource('/books', BookController::class);
+        Route::resource('/roles', RoleController::class);
+        // Route::resource('/genres', GenreController::class);
+        Route::resource('/authors', AuthorController::class);
+    });
 });
 
 Route::middleware(['auth', 'checkRole'])->name('admin.')->prefix('admin')->group(function () {
