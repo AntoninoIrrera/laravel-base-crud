@@ -59,6 +59,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/admin/genres') }}">{{ __('Genres') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/authors') }}">{{ __('Authors') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -34,4 +34,37 @@ class LeadController extends Controller
         return redirect()->route('guest.index');
 
     }
+
+    public function destroy(Lead $lead)
+    {
+        $lead->delete();
+
+        return redirect()->route('admin.dashboard');
+
+    }
+
+    public function trashed()
+    {
+        $leads = Lead::onlyTrashed()->get();
+        return view('admin.email.trashed', compact('leads'));
+    }
+
+    public function forceDelete($id)
+    {
+        Lead::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.dashboard');
+    }
+
+    public function restoreAll()
+    {
+        Lead::onlyTrashed()->restore();
+        return redirect()->route('admin.dashboard');
+    }
+
+    public function restore($id)
+    {
+        Lead::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('email.trashed');
+        
+    }
 }

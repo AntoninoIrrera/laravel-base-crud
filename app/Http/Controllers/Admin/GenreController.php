@@ -22,7 +22,8 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('admin.genres.index', compact('genres'));
+        $trashed = Genre::onlyTrashed()->get()->count();
+        return view('admin.genres.index', compact('genres', 'trashed'));
     }
 
     /**
@@ -32,7 +33,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('admin.genres.create', ["role" => new Genre()]);
+        return view('admin.genres.create', ["genre" => new Genre()]);
     }
 
     /**
@@ -87,7 +88,7 @@ class GenreController extends Controller
 
         $genre->update($editData);
 
-        return redirect()->route('admin.genres.show', compact('role'))->with('message', "$genre->name has been update")->with('alert-type', 'info');
+        return redirect()->route('admin.genres.show', compact('genre'))->with('message', "$genre->name has been update")->with('alert-type', 'info');
     }
 
     /**
@@ -100,5 +101,29 @@ class GenreController extends Controller
     {
         $genre->delete();
         return redirect()->route('admin.genres.index')->with('message', "$genre->name has been delete")->with('alert-type', 'warning');
+    }
+
+    public function trashed()
+    {
+        $genres = Genre::onlyTrashed()->get();
+        return view('admin.genres.trashed', compact('genres'));
+    }
+
+    public function forceDelete($id)
+    {
+        Genre::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.genres.index')->with('message', "The genre has been deleted definitely")->with('alert-type', 'warning');
+    }
+
+    public function restoreAll()
+    {
+        Genre::onlyTrashed()->restore();
+        return redirect()->route('admin.genres.index')->with('message', "All genres have been successfully restored")->with('alert-type', 'success');
+    }
+
+    public function restore($id)
+    {
+        Genre::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.genres.index')->with('message', "The genre has been successfully restored")->with('alert-type', 'success');
     }
 }
