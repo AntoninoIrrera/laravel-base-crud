@@ -8,11 +8,11 @@
 
             <div class="row">
                 <div class="col-12 mt-3 text-end">
-                    {{-- @if ($trashed)
-                        <a class="btn btn-danger me-3" href="{{ route('admin.roles.trashed') }}"><b>{{ $trashed }}</b>
+                    @if ($trashed)
+                        <a class="btn btn-danger me-3" href="{{ route('admin.genres.trashed') }}"><b>{{ $trashed }}</b>
                             item/s in
                             recycled bin</a>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
 
