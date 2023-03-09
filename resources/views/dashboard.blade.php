@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    @if(Auth::user()->role->name == 'admin')
+    @if(Auth::user()->role->name == 'Admin')
     <div class="row">
         <div class="col-12 text-center my-3">
             <p class="m-0 fs-1 text-danger">Email totali: {{count($totalLeads)}}</p>
