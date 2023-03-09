@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/books', [GuestPageController::class, 'index'])->name('guest.index');
 Route::get('/books/{book}', [GuestPageController::class, 'show'])->name('guest.show');
@@ -48,7 +48,7 @@ Route::get('/dashboard', function () {
     return view('dashboard',compact('totalLeads','trashed','leads'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth','checkRole'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/trashed', [BookController::class, 'trashed'])->name('books.trashed');
     Route::post('/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
     Route::delete('/{book}/force-delete', [BookController::class, 'forceDelete'])->name('books.force-delete');
@@ -60,7 +60,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('/authors', AuthorController::class);
 });
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'checkRole'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/trashed', [GenreController::class, 'trashed'])->name('genres.trashed');
     Route::post('/{genre}/restore', [GenreController::class, 'restore'])->name('genres.restore');
     Route::delete('/{genre}/force-delete', [GenreController::class, 'forceDelete'])->name('genres.force-delete');

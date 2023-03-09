@@ -45,16 +45,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if(Auth::user()->role->name == 'Visitator')
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
-                        @if(Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/books') }}">{{ __('Books') }}</a>
+                        </li>
+                        @endif
+                        @if(Auth::user()->role->name != 'Visitator')
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/admin/books') }}">{{ __('Index') }}</a>
                         </li>
-                        @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/books') }}">{{ __('Books') }}</a>
+                            <a class="nav-link" href="{{ url('/admin/roles') }}">{{ __('Roles') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/genres') }}">{{ __('Genres') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/authors') }}">{{ __('Authors') }}</a>
                         </li>
                         @endif
                     </ul>
@@ -74,6 +84,7 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span style="color: {{Auth::user()->role->color}}" class="me-3">{{Auth::user()->role->name}}</span>
                                 {{ Auth::user()->name }}
                             </a>
 
