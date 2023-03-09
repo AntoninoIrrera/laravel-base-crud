@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Lead;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,10 @@ Route::post('/lead/restore-all', [LeadController::class, 'restoreAll'])->name('e
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $trashed = Lead::onlyTrashed()->get()->count();
+    $totalLeads = Lead::all();
+    $leads = Lead::orderBy('created_at', 'desc')->paginate(5);
+    return view('dashboard',compact('totalLeads','trashed','leads'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
