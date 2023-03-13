@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\GenreController as ApiGenreController;
 use App\Http\Controllers\Api\BookController as ApiBookController;
 use App\Http\Controllers\api\LeadController as ApiLeadController;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/books', [ApiBookController::class, 'index'])->name('api.book.index');
 Route::get('/books/{book}', [ApiBookController::class, 'show'])->name('api.book.show');
+
+Route::get('/genres', [ApiGenreController::class, 'index'])->name('api.genre.index');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
